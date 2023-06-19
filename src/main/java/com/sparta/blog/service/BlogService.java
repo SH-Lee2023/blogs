@@ -10,11 +10,11 @@ import java.util.List;
 
 public class BlogService {
 
-    private final JdbcTemplate jdbcTemplate; // jdbc 사용할꺼면 변수 선언
+    private final BlogRepository blogRepository;
 
     public BlogService(JdbcTemplate jdbcTemplate) {
 
-        this.jdbcTemplate = jdbcTemplate;
+        this.blogRepository = new BlogRepository(jdbcTemplate);
     }
 
     public BlogResponseDto createBlog(BlogRequestDto requestDto) {
@@ -22,7 +22,7 @@ public class BlogService {
         Blog blog = new Blog(requestDto);
 
         // DB 저장
-        BlogRepository blogRepository = new BlogRepository(jdbcTemplate);
+
         Blog savsBlog = blogRepository.save(blog);
         return new BlogResponseDto(savsBlog);
 
@@ -36,18 +36,18 @@ public class BlogService {
 
     public List<BlogResponseDto> getBlogs() {
         // DB 조회
-        BlogRepository blogRepository = new BlogRepository(jdbcTemplate);
+
         return blogRepository.findAll();
 
     }
     public BlogResponseDto getBlogById(Long id) {
-        BlogRepository blogRepository = new BlogRepository(jdbcTemplate);
+
         return blogRepository.findById(id);
     }
 
 
     public BlogResponseDto updateBlog(Long id, BlogRequestDto requestDto) {
-        BlogRepository blogRepository = new BlogRepository(jdbcTemplate);
+
         String password = blogRepository.getPasswordById(id);
         if (password.equals(requestDto.getPassword())) {
             blogRepository.update(id, requestDto);
@@ -58,7 +58,7 @@ public class BlogService {
     }
 
     public boolean deleteBlog(Long id, String password) {
-        BlogRepository blogRepository = new BlogRepository(jdbcTemplate);
+
         String storedPassword = blogRepository.getPasswordById(id);
         if (storedPassword.equals(password)) {
             blogRepository.delete(id);
