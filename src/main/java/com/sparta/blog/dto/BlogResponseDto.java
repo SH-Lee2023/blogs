@@ -3,7 +3,7 @@ package com.sparta.blog.dto;
 import com.sparta.blog.entity.Blog;
 import lombok.Getter;
 
-import java.util.PrimitiveIterator;
+import java.time.LocalDateTime;
 
 @Getter
 public class BlogResponseDto {
@@ -12,7 +12,8 @@ public class BlogResponseDto {
     private String username;
     private String contents;
     private String password;
-    private String createdAt;
+    private LocalDateTime createdAt;
+
 
     public BlogResponseDto(Blog blog) {
 
@@ -20,14 +21,7 @@ public class BlogResponseDto {
         this.title = blog.getTitle();
         this.username = blog.getUsername();
         this.contents = blog.getContents();
-        this.password = blog.getPassword();
+        this.createdAt = blog.getCreatedAt();
     }
 
-    public BlogResponseDto(Long id, String title, String username, String contents, String createdAt) {
-        this.id = id;
-        this.title = title;
-        this.username = username;
-        this.contents = contents;
-        this.createdAt = createdAt;
-    }
 }
