@@ -1,6 +1,5 @@
 package com.sparta.blog.entity;
 
-import com.sparta.blog.entity.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
