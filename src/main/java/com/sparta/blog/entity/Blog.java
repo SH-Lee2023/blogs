@@ -49,7 +49,7 @@ public class Blog extends Timestamped {
     }
 
     public LocalDateTime getCreatedAt() {
-        return null;
+        return getCreatedAt();
     }
 }
 
