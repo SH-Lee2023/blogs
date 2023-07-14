@@ -32,15 +32,16 @@ public class Blog extends Timestamped {
     @Column(nullable = false)
     private Long userId;
 
-//    @OneToMany(mappedBy = "blog",cascade = CascadeType.REMOVE)          // blog(1) <-> comment(n) 관계
-//    List<Comment> comment = new ArrayList<>();                          // blog가 삭제될 경우 연관테이블인 comment내용도 삭제 됨
+    @Column(nullable = false)
+    private Long likeCount;
+
 
     public Blog(BlogRequestDto requestDto) {
         this.title = requestDto.getTitle();                 // 사용자가 입력한 게시판 제목
         this.contents = requestDto.getContents();           // 사용자가 입력한 게시판 내용
         this.username = username;                           // 사용자 아이디 (user를 통해서 받아옴)
         this.password = password;                           // 사용자 패스워드 (..)
-//        this.userId = userId;                               // User Column Id
+        this.userId = userId;                               // User Column Id
     }
 
     public void update(BlogRequestDto reqeustDto) {
@@ -49,6 +50,7 @@ public class Blog extends Timestamped {
     }
 
     public LocalDateTime getCreatedAt() {
+
         return getCreatedAt();
     }
 }

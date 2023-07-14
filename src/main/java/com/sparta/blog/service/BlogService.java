@@ -60,6 +60,14 @@ public class BlogService {
         return id;
     }
 
+    public void likeBlog(Long blogId) {
+        Blog blog = blogRepository.findById(blogId)
+                .orElseThrow(() -> new IllegalArgumentException(("유효하지 않습니다.")));
+
+        blog.setLikeCount(blog.getLikeCount() + 1);
+        blogRepository.save(blog);
+    }
+
     private Blog findBlog(Long id) {
         return blogRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("사용자가 존재하지 않습니다.")

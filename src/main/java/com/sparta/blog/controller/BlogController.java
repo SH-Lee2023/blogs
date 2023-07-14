@@ -25,11 +25,13 @@ public class BlogController {
 
     @GetMapping("/blogs")
     public List<BlogResponseDto> getBlogs() {
+
         return blogService.getBlogs();
     }
 
     @GetMapping("/blogs/{id}")
     public BlogResponseDto getBlogById(@PathVariable Long id) {
+
         return blogService.getBlogById(id);
     }
 
@@ -44,6 +46,11 @@ public class BlogController {
     public long deleteBlog(@PathVariable Long id, @RequestParam String password) {
 
         return blogService.deleteBlog(id, password);
+    }
+
+    @PostMapping("/blog/{id}")
+    public void likeblog(@PathVariable("id") Long id) {
+        blogService.likeBlog(id);
     }
 
 }
